@@ -402,6 +402,15 @@ kube::golang::place_bins() {
 
     local full_binpath_src="${KUBE_GOPATH}/bin${platform_src}"
     if [[ -d "${full_binpath_src}" ]]; then
+        ls -la ${full_binpath_src}
+      echo "MKDIR!!!!! ${KUBE_OUTPUT_BINPATH}/${platform}"
+      # echo "USER $USER"
+      ls -la /
+      ls -la /go/src/k8s.io/kubernetes
+      ls -la /go/src/k8s.io/kubernetes/_output
+      ls -la /go/src/k8s.io/kubernetes/_output/dockerized
+      ls -la /go/src/k8s.io/kubernetes/_output/dockerized/bin
+      echo "UID: $(id -u)"
       mkdir -p "${KUBE_OUTPUT_BINPATH}/${platform}"
       find "${full_binpath_src}" -maxdepth 1 -type f -exec \
         rsync -pt {} "${KUBE_OUTPUT_BINPATH}/${platform}" \;
