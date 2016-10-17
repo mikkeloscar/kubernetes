@@ -28,7 +28,9 @@ import (
 // Runtime options for the federation-apiserver.
 type ServerRunOptions struct {
 	*genericoptions.ServerRunOptions
-	EventTTL time.Duration
+	EventTTL                    time.Duration
+	WebhookTokenAuthnConfigFile string
+	WebhookTokenAuthnCacheTTL   time.Duration
 }
 
 // NewServerRunOptions creates a new ServerRunOptions object with default values.
@@ -49,4 +51,11 @@ func (s *ServerRunOptions) AddFlags(fs *pflag.FlagSet) {
 
 	fs.DurationVar(&s.EventTTL, "event-ttl", s.EventTTL,
 		"Amount of time to retain events. Default is 1h.")
+
+	fs.StringVar(&s.WebhookTokenAuthnConfigFile, "authentication-token-webhook-config-file", s.WebhookTokenAuthnConfigFile, ""+
+		"File with webhook configuration for token authentication in kubeconfig format. "+
+		"The API server will query the remote service to determine authentication for bearer tokens.")
+
+	fs.DurationVar(&s.WebhookTokenAuthnCacheTTL, "authentication-token-webhook-cache-ttl", s.WebhookTokenAuthnCacheTTL,
+		"The duration to cache responses from the webhook token authenticator. Default is 2m.")
 }

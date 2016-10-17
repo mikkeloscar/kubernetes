@@ -117,18 +117,20 @@ func Run(s *options.ServerRunOptions) error {
 	}
 
 	apiAuthenticator, securityDefinitions, err := authenticator.New(authenticator.AuthenticatorConfig{
-		Anonymous:           s.AnonymousAuth,
-		AnyToken:            s.EnableAnyToken,
-		BasicAuthFile:       s.BasicAuthFile,
-		ClientCAFile:        s.ClientCAFile,
-		TokenAuthFile:       s.TokenAuthFile,
-		OIDCIssuerURL:       s.OIDCIssuerURL,
-		OIDCClientID:        s.OIDCClientID,
-		OIDCCAFile:          s.OIDCCAFile,
-		OIDCUsernameClaim:   s.OIDCUsernameClaim,
-		OIDCGroupsClaim:     s.OIDCGroupsClaim,
-		KeystoneURL:         s.KeystoneURL,
-		RequestHeaderConfig: s.AuthenticationRequestHeaderConfig(),
+		Anonymous:                   s.AnonymousAuth,
+		AnyToken:                    s.EnableAnyToken,
+		BasicAuthFile:               s.BasicAuthFile,
+		ClientCAFile:                s.ClientCAFile,
+		TokenAuthFile:               s.TokenAuthFile,
+		OIDCIssuerURL:               s.OIDCIssuerURL,
+		OIDCClientID:                s.OIDCClientID,
+		OIDCCAFile:                  s.OIDCCAFile,
+		OIDCUsernameClaim:           s.OIDCUsernameClaim,
+		OIDCGroupsClaim:             s.OIDCGroupsClaim,
+		KeystoneURL:                 s.KeystoneURL,
+		RequestHeaderConfig:         s.AuthenticationRequestHeaderConfig(),
+		WebhookTokenAuthnConfigFile: s.WebhookTokenAuthnConfigFile,
+		WebhookTokenAuthnCacheTTL:   s.WebhookTokenAuthnCacheTTL,
 	})
 	if err != nil {
 		glog.Fatalf("Invalid Authentication Config: %v", err)
