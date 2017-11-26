@@ -375,9 +375,9 @@ func (f *Framework) CreateNamespace(baseName string, labels map[string]string) (
 		f.namespacesToDelete = append(f.namespacesToDelete, ns)
 	}
 
-	if !f.SkipPrivilegedPSPBinding {
-		CreatePrivilegedPSPBinding(f, ns.Name)
-	}
+	// if !f.SkipPrivilegedPSPBinding {
+	// 	CreatePrivilegedPSPBinding(f, ns.Name)
+	// }
 
 	return ns, err
 }
