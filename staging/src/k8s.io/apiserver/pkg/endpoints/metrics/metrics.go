@@ -54,8 +54,8 @@ var (
 		prometheus.HistogramOpts{
 			Name: "apiserver_request_latencies",
 			Help: "Response latency distribution in microseconds for each verb, resource and subresource.",
-			// Use buckets ranging from 125 ms to 8 seconds.
-			Buckets: prometheus.ExponentialBuckets(125000, 2.0, 7),
+			// Use buckets ranging from 5 ms to 10 seconds (Prometheus defaults).
+			Buckets: []float64{5000, 10000, 25000, 50000, 100000, 250000, 500000, 1000000, 2500000, 5000000, 10000000},
 		},
 		[]string{"verb", "resource", "subresource", "scope"},
 	)
